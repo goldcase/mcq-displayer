@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MCQ Demo</title>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="multipleChoice">
+
+<div ng-controller="MultipleChoiceController as mcqCtrl">
+	<div class="question-container" ng-repeat="mcq in mcqCtrl.mcQuestions">
+	<div class="question">
+		<h3 ng-bind="mcq.question"></h3>
+		<a href="#" class="pure-button hint" ng-click="mcq.displayHint = !mcq.displayHint" ng-bind="mcq.displayHint ? 'Hide Hint' : 'Display Hint'"></a>
+		<p ng-bind-html="mcqCtrl.formatHint(mcq)"></p>
+		<p ng-bind-html="mcqCtrl.formatAnswer(mcq)"></p>
+		<ol type="A">
+			<li ng-repeat="mcqChoice in mcq.choices">
+				<a class="pure-button pure-button-primary" ng-click="mcqCtrl.verifyAnswer(mcq, mcqChoice)" ng-bind="mcqChoice" href="#"></a>
+			</li>	
+			
+		</ol>
+	</div>
+	</div>
+</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.0-beta.2/angular-sanitize.min.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
